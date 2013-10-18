@@ -1,0 +1,17 @@
+# use glob syntax.
+syntax: glob
+
+desktop.ini
+.DS_Store
+workspace.xml
+build-local.properties
+config-local.properties
+*.iws
+*.~*
+*.zip
+
+# switch to regexp syntax.
+syntax: regexp
+^_idea_projects/out.*
+#^_applet_tests/.*
+^html5/sf-panorama/.*
