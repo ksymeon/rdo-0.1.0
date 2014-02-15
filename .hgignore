@@ -12,6 +12,6 @@ config-local.properties
 
 # switch to regexp syntax.
 syntax: regexp
-^_idea_projects/out.*
+^output.*
 #^_applet_tests/.*
 ^html5/sf-panorama/.*

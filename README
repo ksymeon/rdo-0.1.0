@@ -1,0 +1,20 @@
+###############################################################################
+## Rapid Data Objects
+###############################################################################
+
+Rapid Data Objects (RDO) is a very lightweight ORM that requires NO-CONFIGURATION.
+
+
+
+-------------------------------------------------------------------------------
+---- Prerequisites for Development
+-------------------------------------------------------------------------------
+
+Before building with Ant ensure the following environment variables are set:
+- WORK_HOME ...... the directory preceding the Mercurial depot
+- STAGING_HOME ... a temporary directory for staging files
+- HSQLDB_HOME .... installation directory of HSQLDB (to run end-to-end tests)
+
+Optionally you can set the following environment variables:
+- ANT_HOME
+- JAVA_HOME
