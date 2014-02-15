@@ -23,7 +23,7 @@ import org.cylog.rdo.exception.ModelNotSupportedException;
  *
  * The ColumnModel is constructed with the database parameters and an
  * RdoDataType is assigned to it based on a private method in this class
- * that determines the suitable RdoDataType for a given sql.Type.
+ * that determines the suitable RdoDataType for a given {@link java.sql.Types}.
  *
  * @author Kostas Symeonidis
  */
@@ -31,26 +31,24 @@ public class ColumnModel {
 
     // ---- Member Variables --------------------------------------------------
 
-    int columnIndex;
-
-    String columnName;
-    int sqlType;         // from java.sql.Types
-    RdoDataType dataType;
-    int columnLength;
-    int decimalDigits;
-    boolean nullable;
+    private final int columnIndex;
+    private final String columnName;
+    private final int sqlType;         // from java.sql.Types
+    private final int columnLength;
+    private final int decimalDigits;
+    private final boolean nullable;
+    private final RdoDataType dataType;
 
     // ---- Constructors ------------------------------------------------------
 
     public ColumnModel(int columnIndex, String columnName, int sqlType,
                        int columnLength, int decimalDigits, boolean nullable) {
         this.columnIndex = columnIndex;
-        this.columnName = columnName.toLowerCase();
+        this.columnName = columnName;
         this.sqlType = sqlType;
         this.columnLength = columnLength;
         this.decimalDigits = decimalDigits;
         this.nullable = nullable;
-
         this.dataType = getDataTypeFromSqlType();
     }
 
@@ -108,6 +106,28 @@ public class ColumnModel {
             case java.sql.Types.TIME:
             case java.sql.Types.TIMESTAMP:
                 return RdoDataType.DATE;
+
+            /* TODO: support some of these
+            case java.sql.Types.BINARY:
+            case java.sql.Types.VARBINARY:
+            case java.sql.Types.LONGVARBINARY:
+            case java.sql.Types.NULL:
+            case java.sql.Types.OTHER:
+            case java.sql.Types.JAVA_OBJECT:
+            case java.sql.Types.DISTINCT:
+            case java.sql.Types.STRUCT:
+            case java.sql.Types.ARRAY:
+            case java.sql.Types.BLOB:
+            case java.sql.Types.REF:
+            case java.sql.Types.DATALINK:
+            case java.sql.Types.BOOLEAN:
+            case java.sql.Types.ROWID:
+            case java.sql.Types.NCHAR:
+            case java.sql.Types.NVARCHAR:
+            case java.sql.Types.LONGNVARCHAR:
+            case java.sql.Types.NCLOB:
+            case java.sql.Types.SQLXML:
+            */
 
             default:
                 throw new ModelNotSupportedException(

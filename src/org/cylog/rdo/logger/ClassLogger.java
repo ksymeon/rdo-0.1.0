@@ -99,6 +99,7 @@ public class ClassLogger implements Log {
 
     public void warn(Object message) {
         log.warn(message);
+        System.out.println("WARN : " + message);  // TODO: remove
     }
 
     public void warn(Object message, Throwable t) {

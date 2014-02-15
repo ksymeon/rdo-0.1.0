@@ -16,12 +16,11 @@
 package org.cylog.rdo.bean;
 
 /**
- * The internal data types supported by RapidDataObjects
+ * The internal data types supported by the RDO library.
  *
  * @author Kostas Symeonidis
  */
 public enum RdoDataType {
-
     BOOLEAN,
     INT, LONG,
     FLOAT, DOUBLE,

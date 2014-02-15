@@ -19,7 +19,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import static junit.framework.TestCase.assertNull;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * FieldNameUtil Tester.
@@ -32,35 +35,46 @@ public class FieldNameUtilTest {
     @Test
     public void getCamelCase() throws Exception {
         System.out.println("Testing testGetCamelCase...");
-        assertEquals(null, FieldNameUtil.getCamelCase(null));
-        assertEquals("", FieldNameUtil.getCamelCase(""));
-        assertEquals("A", FieldNameUtil.getCamelCase("a"));
-        assertEquals("Ab", FieldNameUtil.getCamelCase("ab"));
-        assertEquals("Ab", FieldNameUtil.getCamelCase("AB"));
-        assertEquals("ABC", FieldNameUtil.getCamelCase(" a b c"));
-        assertEquals("AaaBbbCcc", FieldNameUtil.getCamelCase("aaa_bbb_ccc"));
-        assertEquals("AaaBbbCcc", FieldNameUtil.getCamelCase("aaa bbb ccc"));
-        assertEquals("IsDeleted", FieldNameUtil.getCamelCase("is_deleted"));
+        assertEquals(null, FieldNameUtil.camelCase(null));
+        assertEquals("", FieldNameUtil.camelCase(""));
+        assertEquals("A", FieldNameUtil.camelCase("a"));
+        assertEquals("Ab", FieldNameUtil.camelCase("ab"));
+        assertEquals("Ab", FieldNameUtil.camelCase("AB"));
+        assertEquals("ABC", FieldNameUtil.camelCase(" a b c"));
+        assertEquals("AaaBbbCcc", FieldNameUtil.camelCase("aaa_bbb_ccc"));
+        assertEquals("AaaBbbCcc", FieldNameUtil.camelCase("aaa bbb ccc"));
+        assertEquals("IsDeleted", FieldNameUtil.camelCase("is_deleted"));
 
-        assertEquals("Customerid", FieldNameUtil.getCamelCase("customerid"));
+        assertEquals("Customerid", FieldNameUtil.camelCase("customerid"));
 
-        assertEquals("CustomerId", FieldNameUtil.getCamelCase("CustomerId"));
+        assertEquals("CustomerId", FieldNameUtil.camelCase("CustomerId"));
         assertEquals("AQuickBrownFoxJumpsOverTheLazyDog",
-                     FieldNameUtil.getCamelCase("aQuickBrownFox_Jumps_Over_the_lazy_dog"));
+                     FieldNameUtil.camelCase("aQuickBrownFox_Jumps_Over_the_lazy_dog"));
 
-        assertEquals("AbcdDef", FieldNameUtil.getCamelCase("ABCD_DEF"));
-        assertEquals("AbcdDeFgh", FieldNameUtil.getCamelCase("ABCD_DeFgh"));
+        assertEquals("AbcdDef", FieldNameUtil.camelCase("ABCD_DEF"));
+        assertEquals("AbcdDeFgh", FieldNameUtil.camelCase("ABCD_DeFgh"));
     }
 
     @Test
     public void camelCaseOfCamelCase() throws Exception {
         System.out.println("Testing testCamelCaseOfCamelCase...");
         String s = "ABCD_DeFgh";
-        assertEquals(FieldNameUtil.getCamelCase(s),
-                     FieldNameUtil.getCamelCase(FieldNameUtil.getCamelCase(s)));
+        assertEquals(FieldNameUtil.camelCase(s),
+                     FieldNameUtil.camelCase(FieldNameUtil.camelCase(s)));
         s = "is_deleted";
-        assertEquals(FieldNameUtil.getCamelCase(s),
-                     FieldNameUtil.getCamelCase(FieldNameUtil.getCamelCase(s)));
+        assertEquals(FieldNameUtil.camelCase(s),
+                     FieldNameUtil.camelCase(FieldNameUtil.camelCase(s)));
+    }
+
+    @Test
+    public void firstUpper() {
+        assertNull(FieldNameUtil.firstUpper(null));
+        assertThat(FieldNameUtil.firstUpper(""), is(""));
+        assertThat(FieldNameUtil.firstUpper("a"), is("A"));
+        assertThat(FieldNameUtil.firstUpper("ab"), is("Ab"));
+        assertThat(FieldNameUtil.firstUpper("Ab"), is("Ab"));
+        assertThat(FieldNameUtil.firstUpper("ABC"), is("ABC"));
+        assertThat(FieldNameUtil.firstUpper("aBC"), is("ABC"));
     }
 
     @Test

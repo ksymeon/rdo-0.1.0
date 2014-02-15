@@ -52,7 +52,8 @@ public class SqlResourceUtil {
             Connection conn = ds.getConnection();
             connectionCount++;
             connectionTotal++;
-            // log.debug("Connection opened, current connections (" + connectionCount + "), total connections so far(" + connectionTotal + ")");
+            // log.debug("Connection opened, current connections (" + connectionCount + "),
+            // total connections so far(" + connectionTotal + ")");
             return conn;
         } catch (SQLException sqle) {
             log.error("Cannot get SQL connection for dataSource : " + sqle.getMessage());
@@ -97,8 +98,8 @@ public class SqlResourceUtil {
             try {
                 pstmt.close();
             } catch (SQLException sqle) {
-                log.warn(
-                        "SQL Exception " + sqle.getMessage() + " when trying to close Prepared or Callable statement");
+                log.warn("SQL Exception " + sqle.getMessage() +
+                         " when trying to close Prepared or Callable statement");
             }
         }
     }

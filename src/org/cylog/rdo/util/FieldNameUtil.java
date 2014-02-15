@@ -34,14 +34,14 @@ public class FieldNameUtil {
      * This ensures that an existing "CamelCase" string remains as it is, i.e.
      * the following statement is ALWAYS TRUE:
      *
-     * <code>getCamelCase(getCamelCase(x)) = getCamelCase(x)</code>
+     * <code>camelCase(camelCase(x)) = camelCase(x)</code>
      *
      * This method will ensure that either "THIS_ID" and "this_id" are converted
      * to "ThisId".
      *
      * A NULL string returns NULL.
      */
-    public static String getCamelCase(String s) {
+    public static String camelCase(String s) {
         if (s == null) {
             return null;
         }
@@ -52,8 +52,7 @@ public class FieldNameUtil {
         for (char c : s.toCharArray()) {
             if (Character.isSpaceChar(c) || (c == '_')) {
                 afterSeparator = true;
-            } else // not a separator char
-            {
+            } else { // not a separator char
                 if (afterSeparator) {
                     sb.append(Character.toUpperCase(c));
                 } else {
@@ -71,6 +70,21 @@ public class FieldNameUtil {
         return sb.toString();
     }
 
+    public static String firstUpper(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        if (s.length() == 0) {
+            return s;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(Character.toUpperCase(s.charAt(0)));
+        sb.append(s.substring(1));
+        return sb.toString();
+    }
+
     /**
      * Returns java method names based on a database field name. Database fields
      * should be written with underscores ("_") between words, where java fields
@@ -82,11 +96,12 @@ public class FieldNameUtil {
     public static String[] getPossibleSettersFromFieldName(String fieldName) {
         List<String> result = new ArrayList<String>();
 
-        result.add("set" + getCamelCase(fieldName));
+        result.add("set" + firstUpper(fieldName));
+        result.add("set" + camelCase(fieldName));
 
         // if this field starts with "is_XXX", check if there's method called "setXXX"
         if (fieldName.toLowerCase().startsWith("is_") && (fieldName.length() > 3)) {
-            result.add("set" + getCamelCase(fieldName.substring(2)));
+            result.add("set" + camelCase(fieldName.substring(2)));
         }
 
         return result.toArray(new String[result.size()]);

@@ -18,8 +18,6 @@ package org.cylog.rdo.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-
 import org.cylog.rdo.logger.ClassLogger;
 import org.cylog.rdo.util.FieldNameUtil;
 
@@ -30,18 +28,17 @@ import org.cylog.rdo.util.FieldNameUtil;
  * @author Kostas Symeonidis
  */
 public class RdoMapper {
+
     // ---- Static ------------------------------------------------------------
 
-    public static Log log = new ClassLogger();
-
-    // ---- Constants ---------------------------------------------------------
+    public static ClassLogger log = new ClassLogger();
 
     // ---- Member Variables --------------------------------------------------
 
-    private ClassModel classModel;
-    private TableModel tableModel;
+    private final ClassModel classModel;
+    private final TableModel tableModel;
 
-    private List<RdoOperation> readOperations;
+    private final List<RdoOperation> readOperations;
 
     // ---- Constructors ------------------------------------------------------
 
@@ -71,9 +68,10 @@ public class RdoMapper {
     // ---- Private methods ---------------------------------------------------
 
     private void init() {
-        log.info(
-                " + Initialising RowMapper for class " + this.classModel + " and table " + this.tableModel);
+        log.info(" + Initialising RowMapper for class %s and table %s ", classModel, tableModel);
         for (ColumnModel column : tableModel.getColumns()) {
+
+            boolean found = false;
             for (String setterName : FieldNameUtil.getPossibleSettersFromFieldName(
                     column.getColumnName())) {
                 log.debug(" ? Check if setter with name " + setterName + " exists");
@@ -81,19 +79,25 @@ public class RdoMapper {
                 MethodModel method = classModel.getMethodWithName(setterName);
                 if (method != null) {
                     if (compatibleTypes(column.getDataType(), method.getDataType())) {
-                        log.debug(
-                                " + Setter with name " + setterName + " exists and types are compatible. Adding mapping operation");
+                        log.debug(" + Setter with name " + setterName +
+                                  " exists and types are compatible. Adding mapping operation");
 
                         RdoOperation ro = new RdoOperation(method, column);
-                        this.readOperations.add(ro);
+                        readOperations.add(ro);
 
                         // move to the next column
+                        found = true;
                         break;
                     } else {
                         log.warn("Incompatible data types for column " + column.getColumnName() +
-                                 ". Source is " + column.getDataType() + ", Target is " + method.getDataType());
+                                 ". Source is " + column.getDataType() +
+                                 ", Target is " + method.getDataType());
                     }
                 }
+            }
+
+            if (!found) {
+                log.warn("Setter not found for field \"%s\"", column.getColumnName());
             }
         }
     }

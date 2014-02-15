@@ -31,6 +31,7 @@ import org.cylog.rdo.logger.ClassLogger;
  * @author Kostas Symeonidis
  */
 public class ReflectionUtil {
+
     // ---- Static ------------------------------------------------------------
 
     public static Log log = new ClassLogger();
