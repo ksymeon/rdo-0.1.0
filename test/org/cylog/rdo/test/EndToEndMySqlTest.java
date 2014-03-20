@@ -15,19 +15,20 @@
  */
 package org.cylog.rdo.test;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import org.cylog.rdo.dao.RdoDao;
-import org.cylog.rdo.test.dto.NumberData;
-import org.cylog.rdo.test.dto.SimpleInteger;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import org.junit.Test;
+
+import org.cylog.rdo.dao.RdoDao;
+import org.cylog.rdo.test.dto.NumberData;
+import org.cylog.rdo.test.dto.SimpleInteger;
 
 /**
  * Full EndToEndTest that can be executed from the command-line or through JUnit.

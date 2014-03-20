@@ -15,6 +15,9 @@
  */
 package org.cylog.rdo.test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -27,9 +30,6 @@ import org.junit.Test;
 
 import org.cylog.rdo.dao.RdoDao;
 import org.cylog.rdo.test.dto.SimpleInteger;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 /**
  * Full EndToEndTest that can be executed from the command-line or through JUnit.
