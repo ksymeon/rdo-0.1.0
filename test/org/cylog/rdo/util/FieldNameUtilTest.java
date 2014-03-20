@@ -64,6 +64,14 @@ public class FieldNameUtilTest {
         s = "is_deleted";
         assertEquals(FieldNameUtil.camelCase(s),
                      FieldNameUtil.camelCase(FieldNameUtil.camelCase(s)));
+
+        s = "CustomerId";
+        assertEquals(FieldNameUtil.camelCase(s),
+                     FieldNameUtil.camelCase(FieldNameUtil.camelCase(s)));
+
+        s = "productId";
+        assertEquals(FieldNameUtil.camelCase(s),
+                     FieldNameUtil.camelCase(FieldNameUtil.camelCase(s)));
     }
 
     @Test
@@ -75,6 +83,8 @@ public class FieldNameUtilTest {
         assertThat(FieldNameUtil.firstUpper("Ab"), is("Ab"));
         assertThat(FieldNameUtil.firstUpper("ABC"), is("ABC"));
         assertThat(FieldNameUtil.firstUpper("aBC"), is("ABC"));
+
+        assertThat(FieldNameUtil.firstUpper("AB_C"), is("AB_C"));
     }
 
     @Test
@@ -84,6 +94,11 @@ public class FieldNameUtilTest {
         assertEquals(2, s.length);
         assertEquals("setIsDeleted", s[0]);
         assertEquals("setDeleted", s[1]);
+
+        s = FieldNameUtil.getPossibleSettersFromFieldName("isActive");
+        assertEquals(2, s.length);
+        assertEquals("setIsActive", s[0]);
+        assertEquals("setActive", s[1]);
 
         s = FieldNameUtil.getPossibleSettersFromFieldName("game_product_id");
         assertEquals(1, s.length);

@@ -70,19 +70,19 @@ public class FieldNameUtil {
         return sb.toString();
     }
 
+    /**
+     * Convert the first character of a string to UPPER case.
+     *
+     * @param s the string to convert its first character
+     *
+     * @return a string with the first character uppercase
+     */
     public static String firstUpper(String s) {
-        if (s == null) {
-            return null;
-        }
-
-        if (s.length() == 0) {
+        if ((s == null) || (s.length() == 0)) {
             return s;
         }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(Character.toUpperCase(s.charAt(0)));
-        sb.append(s.substring(1));
-        return sb.toString();
+        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
     /**
@@ -94,16 +94,39 @@ public class FieldNameUtil {
      * "setX" method.
      */
     public static String[] getPossibleSettersFromFieldName(String fieldName) {
-        List<String> result = new ArrayList<String>();
+        SingularStringList result = new SingularStringList();
 
-        result.add("set" + firstUpper(fieldName));
+        result.add("set" + firstUpper(camelCase(fieldName)));
         result.add("set" + camelCase(fieldName));
 
         // if this field starts with "is_XXX", check if there's method called "setXXX"
         if (fieldName.toLowerCase().startsWith("is_") && (fieldName.length() > 3)) {
+            result.add("set" + camelCase(fieldName.substring(3)));
+        } else if (fieldName.startsWith("is")
+                   && (fieldName.length() > 2)
+                   && Character.isUpperCase(fieldName.charAt(2))) {
             result.add("set" + camelCase(fieldName.substring(2)));
         }
 
-        return result.toArray(new String[result.size()]);
+        return result.toArray();
+    }
+
+    private static class SingularStringList {
+
+        private final List<String> list;
+
+        private SingularStringList() {
+            this.list = new ArrayList<>();
+        }
+
+        public void add(String s) {
+            if (!list.contains(s)) {
+                list.add(s);
+            }
+        }
+
+        public String[] toArray() {
+            return this.list.toArray(new String[1]);
+        }
     }
 }

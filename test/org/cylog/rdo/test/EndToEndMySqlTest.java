@@ -15,16 +15,16 @@
  */
 package org.cylog.rdo.test;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import org.cylog.rdo.dao.RdoDao;
+import org.cylog.rdo.test.dto.NumberData;
+import org.cylog.rdo.test.dto.SimpleInteger;
+import org.junit.Test;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
-
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-
-import org.cylog.rdo.dao.RdoDao;
-import org.cylog.rdo.test.dto.NumberData;
-import org.cylog.rdo.test.dto.SimpleInteger;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -64,6 +64,11 @@ public class EndToEndMySqlTest {
     }
 
     // ---- Tests -------------------------------------------------------------
+
+    @Test
+    public void dummy() {
+
+    }
 
     public void doSimpleIntegerTest() throws Exception {
         Statement stmt = conn.createStatement();
