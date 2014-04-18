@@ -21,9 +21,10 @@
 
   <property file="./build.properties"/>
 
-  <property name="src.dir" value="./src"/>
-  <property name="test.dir" value="./test"/>
-  <property name="test_src.dir" value="./test/java"/>
+  <property name="src.dir" value="./src/java"/>
+  <property name="resources.dir" value="./src/resources"/>
+  <property name="test.src.dir" value="./test/java"/>
+  <property name="test.resources.dir" value="./test/resources"/>
   <property name="etc.dir" value="./etc"/>
   <property name="lib.dir" value="./lib"/>
   <property name="deploy.dir" value="./output"/>
@@ -113,7 +114,7 @@
   </target>
 
   <target name="compile_tests" depends="compile">
-    <javac srcdir="${test_src.dir}" destdir="${staging.test_classes.dir}" optimize="no" debug="yes"
+    <javac srcdir="${test.src.dir}" destdir="${staging.test_classes.dir}" optimize="no" debug="yes"
            deprecation="$javac.deprecation}" includeAntRuntime="false">
       <classpath>
         <path refid="app.test.classpath"/>
@@ -140,7 +141,7 @@
           <path refid="app.test.classpath"/>
           <pathelement path="${staging.test_classes.dir}"/>
           <!-- ensure log4j.properties is found while running tests -->
-          <pathelement path="${test.dir}/resources"/>
+          <pathelement path="${test.resources.dir}"/>
         </classpath>
 
         <formatter type="plain" usefile="@{usefile}"/>
@@ -185,8 +186,10 @@
           <include name="**/*.class"/>
         </fileset>
         <fileset dir="${etc.dir}">
-          <include name="log4j.properties"/>
           <include name="version.txt"/>
+        </fileset>
+        <fileset dir="${resources.dir}">
+          <include name="log4j.properties"/>
         </fileset>
       </jar>
 
