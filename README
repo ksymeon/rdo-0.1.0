@@ -4,7 +4,7 @@
 
 Rapid Data Objects (RDO) is a very lightweight ORM that requires NO-CONFIGURATION.
 
-
+RDO is compatible with Java 6 and above.
 
 -------------------------------------------------------------------------------
 ---- Prerequisites for Development

@@ -25,14 +25,11 @@ import java.lang.reflect.Method;
  * @author Kostas Symeonidis
  */
 public class RdoOperation implements Serializable {
-    // ---- Static ------------------------------------------------------------
-
-    // ---- Constants ---------------------------------------------------------
 
     // ---- Member Variables --------------------------------------------------
 
-    MethodModel methodModel;
-    ColumnModel columnModel;
+    private final MethodModel methodModel;
+    private final ColumnModel columnModel;
 
     // ---- Constructors ------------------------------------------------------
 
@@ -50,8 +47,6 @@ public class RdoOperation implements Serializable {
                ", column = " + columnModel.getColumnName() +
                '}';
     }
-
-    // ---- Private methods ---------------------------------------------------
 
     // ---- Public Convenience Methods ----------------------------------------
 

@@ -24,11 +24,11 @@ import java.util.List;
  * @author Kostas Symeonidis
  */
 public class TableModel {
+
     // ---- Member Variables --------------------------------------------------
 
-    String tableName;
-
-    List<ColumnModel> columns;
+    private final String tableName;
+    private final List<ColumnModel> columns;
 
     // ---- Constructors ------------------------------------------------------
 
@@ -119,8 +119,6 @@ public class TableModel {
 
         return sb.toString();
     }
-
-    // ---- Private methods ---------------------------------------------------
 
     // ---- Bean Properties ---------------------------------------------------
 

@@ -18,21 +18,16 @@ package org.cylog.rdo.bean;
 import java.lang.reflect.Method;
 
 /**
- * TODO description for class JavaMethodModel
- *
  * @author Kostas Symeonidis
  */
 public class MethodModel {
-    // ---- Static ------------------------------------------------------------
-
-    // ---- Constants ---------------------------------------------------------
 
     // ---- Member Variables --------------------------------------------------
 
-    Method method;
-    RdoDataType dataType;
-    Class enumClass;
-    boolean isPrimitive;
+    private final Method method;
+    private final RdoDataType dataType;
+    private final Class enumClass;
+    private final boolean isPrimitive;
 
     // ---- Constructors ------------------------------------------------------
 
@@ -67,8 +62,6 @@ public class MethodModel {
     public String getMethodName() {
         return this.method.getName();
     }
-
-    // ---- Private methods ---------------------------------------------------
 
     // ---- Bean Properties ---------------------------------------------------
 
