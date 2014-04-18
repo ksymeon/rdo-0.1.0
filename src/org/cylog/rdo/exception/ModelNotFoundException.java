@@ -16,7 +16,7 @@
 package org.cylog.rdo.exception;
 
 /**
- * Thrown by the framework when a class/table model cannot be found
+ * Thrown by the framework when a class/table model cannot be found.
  *
  * @author Kostas Symeonidis
  */
@@ -24,9 +24,5 @@ public class ModelNotFoundException extends RuntimeException {
 
     public ModelNotFoundException(String message) {
         super(message);
-    }
-
-    public ModelNotFoundException(String message, Throwable cause) {
-        super(message, cause);
     }
 }

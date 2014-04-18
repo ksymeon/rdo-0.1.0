@@ -79,9 +79,9 @@ public class RdoDao implements RdoRetriever {
      */
     public RdoDao() {
         log.info("Constructing RdoDao...");
-        this.tableModels = new HashMap<>();
-        this.classModels = new HashMap<>();
-        this.mappers = new HashMap<>();
+        this.tableModels = new HashMap<String, TableModel>();
+        this.classModels = new HashMap<String, ClassModel>();
+        this.mappers = new HashMap<String, RdoMapper>();
     }
 
     /**

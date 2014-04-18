@@ -16,7 +16,7 @@
 package org.cylog.rdo.exception;
 
 /**
- * Thrown by the framework when an unsupported feature or data type is accessed
+ * Thrown by the framework when an unsupported feature or data type is accessed.
  *
  * @author Kostas Symeonidis
  */
@@ -24,9 +24,5 @@ public class ModelNotSupportedException extends RuntimeException {
 
     public ModelNotSupportedException(String message) {
         super(message);
-    }
-
-    public ModelNotSupportedException(String message, Throwable cause) {
-        super(message, cause);
     }
 }

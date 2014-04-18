@@ -16,7 +16,7 @@
 package org.cylog.rdo.exception;
 
 /**
- * Thrown by the framework when an exception occurs during model initialisation
+ * Thrown by the framework when an exception occurs during model retrieval or initialisation.
  *
  * @author Kostas Symeonidis
  */

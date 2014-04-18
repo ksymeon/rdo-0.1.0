@@ -16,7 +16,7 @@
 package org.cylog.rdo.exception;
 
 /**
- * Thrown by the framework when a data extraction error occurs
+ * Thrown by the framework when a data extraction error occurs.
  *
  * @author Kostas Symeonidis
  */

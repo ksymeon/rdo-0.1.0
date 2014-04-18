@@ -81,7 +81,6 @@ public class ClassLogger implements Log {
 
     public void debug(Object message) {
         log.debug(message);
-        System.out.println("DEBUG: " + message);  // TODO: remove
     }
 
     public void debug(Object message, Throwable t) {
@@ -90,7 +89,6 @@ public class ClassLogger implements Log {
 
     public void info(Object message) {
         log.info(message);
-        System.out.println("INFO : " + message);  // TODO: remove
     }
 
     public void info(Object message, Throwable t) {
@@ -99,7 +97,6 @@ public class ClassLogger implements Log {
 
     public void warn(Object message) {
         log.warn(message);
-        System.out.println("WARN : " + message);  // TODO: remove
     }
 
     public void warn(Object message, Throwable t) {

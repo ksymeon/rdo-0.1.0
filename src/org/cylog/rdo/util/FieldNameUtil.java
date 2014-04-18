@@ -116,7 +116,7 @@ public class FieldNameUtil {
         private final List<String> list;
 
         private SingularStringList() {
-            this.list = new ArrayList<>();
+            this.list = new ArrayList<String>();
         }
 
         public void add(String s) {
