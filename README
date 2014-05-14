@@ -20,5 +20,5 @@ Before building with Ant ensure the following environment variables are set:
 - HSQLDB_HOME .... installation directory of HSQLDB (to run end-to-end tests)
 
 Optionally you can set the following environment variables:
-- ANT_HOME
-- JAVA_HOME
+- ANT_HOME ....... required by ANT
+- JAVA_HOME ...... pointing to your Java 7 JDK directory
