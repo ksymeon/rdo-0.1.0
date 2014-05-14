@@ -8,9 +8,11 @@ Rapid Data Objects (RDO) is a very lightweight ORM that requires NO-CONFIGURATIO
 
 RDO is compatible with Java 6 and above.
 
+```
 -------------------------------------------------------------------------------
 ---- Prerequisites for Development
 -------------------------------------------------------------------------------
+```
 
 Before building with Ant ensure the following environment variables are set:
 - WORK_HOME ...... the directory preceding the Mercurial depot
